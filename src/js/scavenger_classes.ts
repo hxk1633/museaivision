@@ -1,5 +1,5 @@
 export const SCAVENGER_CLASSES: {[key: number]: string} = {
-0: 'graybuilding',
-1: 'rit',
-2: 'blackwhitepattern',
+0: 'blackwhite',
+1: 'graybuilding',
+2: 'rit',
 }

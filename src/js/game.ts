@@ -468,6 +468,7 @@ export class Game {
           // General error message for issues getting camera access via
           // mediaDevices.getUserMedia.
           ui.setLandingInfoMsg(GAME_STRINGS.CAMERA_GENERAL_ERROR);
+          console.log(error)
         }
       });
     }
