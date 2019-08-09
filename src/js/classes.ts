@@ -23,6 +23,7 @@
  * @param className The class name to add to the element.
  */
 function addClass(el: HTMLElement, className: string) {
+  console.log("addclass");
   if (el.classList) {
     el.classList.add(className);
   } else {

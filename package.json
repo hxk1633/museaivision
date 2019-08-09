@@ -9,7 +9,7 @@
     "sass-watch": "node-sass -w src/sass/main.scss dist/css/main.min.css",
     "sass-build": "node-sass src/sass/main.scss dist/css/main.min.css --output-style compressed",
     "js-watch": "watchify src/js/index.ts -p [tsify] -o dist/js/bundle.js -v --debug",
-    "js-build": "browserify src/js/index.ts -p [tsify] -o dist/js/bundle.js",
+    "js-build": "browserify src/js/index.ts src/js/mobilenet.ts -p [tsify] -o dist/js/bundle.js -d",
     "js-compress": "uglifyjs dist/js/bundle.js -c -m -o dist/js/bundle.js",
     "dev:server": "dev_appserver.py --port=3000 app.yaml",
     "build": "concurrently \"yarn sass-build\" \"yarn js-build && yarn js-compress\"",
@@ -17,14 +17,18 @@
     "lint": "tslint -p . -t verbose"
   },
   "devDependencies": {
+    "@types/jquery": "^3.3.31",
     "@types/lodash": "^4.14.104",
     "@types/stats.js": "^0.17.0",
+    "@types/webpack": "^3.0.5",
+    "@types/webpack-env": "^1.14.0",
     "browserify": "^16.0.0",
     "browserify-shim": "^3.8.14",
     "concurrently": "^3.5.1",
     "lodash": "^4.17.5",
     "mkdirp": "^0.5.1",
     "node-sass": "^4.7.2",
+    "requirejs": "^2.3.6",
     "stats.js": "^0.17.0",
     "tsify": "^3.0.4",
     "tslint": "^5.9.1",
@@ -35,6 +39,9 @@
   "dependencies": {
     "@tensorflow/tfjs-converter": "0.2.1",
     "@tensorflow/tfjs-core": "0.9.0",
-    "babel-polyfill": "^6.26.0"
+    "babel-polyfill": "^6.26.0",
+    "jquery": "^3.4.1",
+    "requirejs": "^2.3.6",
+    "webpack": "^4.39.1"
   }
 }

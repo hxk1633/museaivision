@@ -906,7 +906,7 @@ export class Ui {
 */
   camera() {
     camera.unPauseCamera();
-
+    console.log("camera started");
     this.slideView(VIEWS.COUNTDOWN, CSS_CLASSES.SLIDE_UP).then(value => {
       if (!game.isRunning) {
         game.startGame();

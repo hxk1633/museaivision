@@ -23,7 +23,7 @@ import {camera, VIDEO_PIXELS} from './camera';
 import {VIEWS, ui, GAME_STRINGS} from './ui';
 //import {share} from './share';
 import {getQueryParam, isIOS} from './utils';
-//import {shuffle} from 'lodash';
+//import {shuffle} frfrozen model.js:95 Fetch API cannot load file:///model/tensorflow js model.pb. om 'lodash';
 import * as tfc from '@tensorflow/tfjs-core';
 //import {SPEECH_SPRITE_TIMESTAMPS} from './speech_sprite_timestamps';
 //import {EmojiItem, EMOJIS_LVL_1, EMOJIS_LVL_2, EMOJIS_LVL_3, EMOJIS_LVL_4,
@@ -132,6 +132,7 @@ export class Game {
   stats: Stats;
 
   constructor() {
+    console.log("constructor");
     this.emojiScavengerMobileNet = new MobileNet();
     this.isRunning = true;
     this.cameraPaused = false;
@@ -189,6 +190,8 @@ export class Game {
     */
     if (getQueryParam('debug') === 'true') {
       this.debugMode = true;
+      console.log(this.debugMode);
+
     }
 
     // Calls to window.speechSynthesis.getVoices() are async hence we call our

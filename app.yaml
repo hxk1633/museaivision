@@ -19,7 +19,7 @@ threadsafe: true
 instance_class: F4_1G
 
 handlers:
-- url: /model/(group1-shard1of1)
+- url: /model/(.*group1.*)
   secure: always
   static_files: dist/model/\1
   upload: dist/model/(.*)

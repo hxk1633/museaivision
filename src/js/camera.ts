@@ -39,6 +39,7 @@ export class Camera {
   aspectRatio: number;
 
   constructor() {
+    console.log("camera");
     this.videoElement =
       <HTMLVideoElement>document.querySelector(SELECTORS.CAMERA_ELEMENT);
     this.snapShotCanvas = document.createElement('canvas');

@@ -18,13 +18,29 @@
 
 import * as tfc from '@tensorflow/tfjs-core';
 import {loadFrozenModel, FrozenModel} from '@tensorflow/tfjs-converter';
-import {SCAVENGER_CLASSES} from './scavenger_classes';
-
-
+import {getQueryParam} from './utils';
+import * as $ from 'jquery';
+var albumName = getQueryParam('album');
+var debug = getQueryParam('debug');
+console.log("albumName:" + albumName);
+console.log("debug:" + debug);
+let l: any;
+$.getJSON( "/model/models/albums/classes.json", function( data ) {
+  for (var i in data) {
+    if (albumName == data[i].name) {
+      console.log(data[i].labels);
+      l = data[i].labels;
+    }
+  }
+  //console.log(data);
+}).catch(function (jqXHR, textStatus, errorThrown) {
+    console.error(jqXHR);
+    console.error(textStatus);
+    console.error(errorThrown);
+});;
 type TensorMap = {[name: string]: tfc.Tensor};
-
-const MODEL_FILE_URL = '/model/tensorflowjs_model.pb';
-const WEIGHT_MANIFEST_FILE_URL = '/model/weights_manifest.json';
+const MODEL_FILE_URL = '/model/models/albums/' + albumName + '/data/saved_model_web/tensorflowjs_model.pb';
+const WEIGHT_MANIFEST_FILE_URL = '/model/models/albums/' + albumName + '/data/saved_model_web/weights_manifest.json';
 const INPUT_NODE_NAME = 'input';
 const OUTPUT_NODE_NAME = 'final_result';
 const PREPROCESS_DIVISOR = tfc.scalar(255 / 2);
@@ -78,7 +94,7 @@ export class MobileNet {
     }).slice(0, topK);
 
     return predictionList.map(x => {
-      return {label: SCAVENGER_CLASSES[x.index], value: x.value};
+      return {label: l[x.index], value: x.value};
     });
   }
 }
